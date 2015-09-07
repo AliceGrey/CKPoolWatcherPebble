@@ -8,7 +8,7 @@
     "capabilities": [
         "configurable"
     ],
-    "companyName": "alicewww",
+    "companyName": "alicegrey",
     "longName": "CKPoolWatcher",
     "projectType": "native",
     "resources": {
@@ -47,7 +47,7 @@
     "shortName": "CKPWatcher",
     "uuid": "bf206158-1d1b-401b-9eb4-cf39d5abcf63",
     "versionCode": 1,
-    "versionLabel": "1.1",
+    "versionLabel": "1.2",
     "watchapp": {
         "watchface": true
     }
