@@ -1,0 +1,54 @@
+{
+    "appKeys": {
+        "api_key": 0,
+        "five_hash": 3,
+        "invert": 4,
+        "username": 1
+    },
+    "capabilities": [
+        "configurable"
+    ],
+    "companyName": "alicewww",
+    "longName": "CKPoolWatcher",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "fonts/Diavlo_BOOK_II_37.ttf",
+                "name": "FONT_DIAVLO_15",
+                "type": "font"
+            },
+            {
+                "characterRegex": "[0-9:.]",
+                "file": "fonts/Diavlo_BLACK_II_37.ttf",
+                "name": "FONT_DIAVLO_HEAVY_44",
+                "type": "font"
+            },
+            {
+                "characterRegex": "[0-9:. +-]",
+                "file": "fonts/Diavlo_MEDIUM_II_37.ttf",
+                "name": "FONT_DIAVLO_MEDIUM_39",
+                "type": "font"
+            },
+            {
+                "file": "images/menu_icon_bitwallet.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
+                "file": "fonts/Diavlo_LIGHT_II_37.ttf",
+                "name": "FONT_DIAVLO_LIGHT_15",
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "CKPWatcher",
+    "uuid": "bf206158-1d1b-401b-9eb4-cf39d5abcf63",
+    "versionCode": 1,
+    "versionLabel": "1.1",
+    "watchapp": {
+        "watchface": true
+    }
+}
