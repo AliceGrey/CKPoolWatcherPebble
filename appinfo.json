@@ -14,6 +14,12 @@
     "resources": {
         "media": [
             {
+                "file": "images/Pebble.png",
+                "menuIcon": true,
+                "name": "menu_icon_ck",
+                "type": "png"
+            },
+            {
                 "file": "fonts/Diavlo_BOOK_II_37.ttf",
                 "name": "FONT_DIAVLO_15",
                 "type": "font"
@@ -31,12 +37,6 @@
                 "type": "font"
             },
             {
-                "file": "images/menu_icon_bitwallet.png",
-                "menuIcon": true,
-                "name": "IMAGE_MENU_ICON",
-                "type": "png"
-            },
-            {
                 "file": "fonts/Diavlo_LIGHT_II_37.ttf",
                 "name": "FONT_DIAVLO_LIGHT_15",
                 "type": "font"
@@ -47,7 +47,7 @@
     "shortName": "CKPWatcher",
     "uuid": "bf206158-1d1b-401b-9eb4-cf39d5abcf63",
     "versionCode": 1,
-    "versionLabel": "1.2",
+    "versionLabel": "0.2",
     "watchapp": {
         "watchface": true
     }

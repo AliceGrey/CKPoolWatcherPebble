@@ -20,12 +20,14 @@ static uint8_t sync_buffer[124];
 static TextLayer *text_date_layer;
 static TextLayer *text_time_layer;
 static TextLayer *text_five_layer;
+static TextLayer *text_hash_layer;
 static TextLayer *text_hour_layer;
 
 static InverterLayer *inverter_layer = NULL;
 
 static GFont font_last_price_small;
 static GFont font_last_price_large;
+static GFont font_hash_large;
 
 static bool using_smaller_font = false;
 
@@ -65,11 +67,14 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
 		case FIVE_HASH:
 			text_layer_set_text(text_five_layer, new_tuple->value->cstring);
 			size_t len = strlen(new_tuple->value->cstring);
+      text_layer_set_text(text_hash_layer, "TH/S");
 			if (len > 6 && !using_smaller_font) {
 				text_layer_set_font(text_five_layer, font_last_price_small);
 				using_smaller_font = true;
+        text_layer_set_text(text_hash_layer, "TH/S");
 			} else if (len <= 6 && using_smaller_font) {
 				text_layer_set_font(text_five_layer, font_last_price_large);
+        text_layer_set_text(text_hash_layer, "TH'/'S");
 				using_smaller_font = false;
 			}
 			break;
@@ -173,6 +178,7 @@ static void window_load(Window *window) {
 	
 	font_last_price_small = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DIAVLO_MEDIUM_39));
 	font_last_price_large = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DIAVLO_MEDIUM_39));
+  font_hash_large = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DIAVLO_MEDIUM_39));
 	
 	text_five_layer = text_layer_create(GRect(0, 0, 144-0, 168-0));
 	text_layer_set_text_color(text_five_layer, GColorWhite);
@@ -180,6 +186,14 @@ static void window_load(Window *window) {
 	text_layer_set_font(text_five_layer, font_last_price_large);
 	text_layer_set_text_alignment(text_five_layer, GTextAlignmentCenter);
 	layer_add_child(window_layer, text_layer_get_layer(text_five_layer));
+  
+  text_hash_layer = text_layer_create(GRect(0, 64, 144-0, 168-40));
+	text_layer_set_text_color(text_hash_layer, GColorWhite);
+	text_layer_set_background_color(text_hash_layer, GColorClear);
+	text_layer_set_font(text_hash_layer, fonts_get_system_font(FONT_KEY_ROBOTO_CONDENSED_21));
+	text_layer_set_text_alignment(text_hash_layer, GTextAlignmentCenter);
+	layer_add_child(window_layer, text_layer_get_layer(text_hash_layer));
+  
 
 	
 	
@@ -202,9 +216,8 @@ static void window_load(Window *window) {
 	update_time(t);
 	
 	Tuplet initial_values[] = {
-//		TupletCString(USERNAME, "---"),
-//		TupletCString(API_KEY, "---"),
 		TupletCString(FIVE_HASH, "---"),
+    //TupletCString(FIVE_HASH, "---"),
 //		TupletCString(HOUR_HASH, "---"),
 		TupletInteger(INVERT_COLOR_KEY, persist_read_bool(INVERT_COLOR_KEY)),
 	};
@@ -212,7 +225,7 @@ static void window_load(Window *window) {
 	app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
 				  sync_tuple_changed_callback, sync_error_callback, NULL);
 	
-	//send_cmd();
+	//send_cmd();last_price
 	timer = app_timer_register(2000, timer_callback, NULL);
 	//set_timer();
 }
@@ -226,6 +239,7 @@ static void window_unload(Window *window) {
 	text_layer_destroy(text_date_layer);
 	text_layer_destroy(text_time_layer);
 	text_layer_destroy(text_five_layer);
+  text_layer_destroy(text_hash_layer);
 
 }
 
